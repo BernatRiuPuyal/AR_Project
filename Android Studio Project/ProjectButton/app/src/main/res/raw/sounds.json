@@ -1,0 +1,29 @@
+{
+ "sounds": [
+   {
+     "id": 1,
+     "title": "Rick & Morty",
+     "file": "rick"
+   },
+   {
+     "id": 2,
+     "title": "Epic Sax Guy",
+     "file": "sax_guy"
+   },
+   {
+     "id": 3,
+     "title": "Hog Rider",
+     "file": "hog_rider"
+   },
+   {
+     "id": 4,
+     "title": "Rodrigo Rato",
+     "file": "mercado_amigo"
+   },
+   {
+     "id": 5,
+     "title": "Wololo",
+     "file": "wololo"
+   }
+ ]
+}
