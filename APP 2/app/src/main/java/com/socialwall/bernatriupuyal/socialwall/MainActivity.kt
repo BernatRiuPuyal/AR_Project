@@ -42,5 +42,6 @@ class MainActivity : AppCompatActivity() {
             true
 
         }
+            tabs.selectedItemId = R.id.tab_home
     }
 }

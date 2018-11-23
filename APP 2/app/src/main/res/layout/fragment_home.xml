@@ -6,9 +6,38 @@
              tools:context=".HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+   <android.support.v7.widget.RecyclerView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
+
+
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:layout_height="480dp"
+            android:orientation= "horizontal">
+
+        <EditText android:layout_width="match_parent" android:layout_height="480dp"
+                  android:id="@+id/userInput"
+                  android:background="@color/colorAccent"
+                  android:layout_toStartOf="@+id/sendButton"
+                  android:layout_toLeftOf="@+id/sendButton"
+                  android:layout_alignParentEnd="true"
+                  android:layout_alignParentRight="false"/>
+
+            <Button android:id = "@+id/sendButton"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:layout_alignParentEnd = "true"/>
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
 
 </FrameLayout>

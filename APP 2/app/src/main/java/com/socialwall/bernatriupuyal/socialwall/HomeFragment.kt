@@ -3,9 +3,13 @@ package com.socialwall.bernatriupuyal.socialwall
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_home.*
+import com.google.firebase.firestore.FirebaseFirestore
+import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,8 +34,43 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //TODO: Put list
-    }
 
+
+
+
+        //TODO: Put list
+        sendButton.setOnClickListener {
+            var userText = userInput.text.toString()
+
+            val userMessage = MessageModel(text = userText,createdAt = Date())
+            val db = FirebaseFirestore.getInstance()
+            db.collection("messages").add(userMessage).addOnSuccessListener{
+            refreshdata()
+
+            }.addOnFailureListener{
+
+                Log.e("HomeFragment",it.message)
+            }
+
+        }
+
+    }
+    private fun refreshdata(){
+        val db = FirebaseFirestore.getInstance()
+
+
+        db.collection("messages").get().addOnCompleteListener{task->
+            if (task.isSuccessful){
+                //todo get messages
+                task.result?.forEach{documentSnapshot ->
+                    val messages = documentSnapshot.toObject(MessageModel::class.java)
+                    Log.i("MainActivity","Get Message with Text: " + messages.text)
+                }
+            }
+            else{
+                //todo: oh shiattyyyy
+            }
+        }
+    }
 
 }
