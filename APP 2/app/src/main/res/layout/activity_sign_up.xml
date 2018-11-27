@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".SignUpActivity"
+        android:gravity="center"
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginEnd="@dimen/margin">
+
+
+
+    <!--Usermname -->
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:text="Username"/>
+
+    <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:hint="Choose your app username"
+    android:lines="1"
+    android:gravity="center"
+    android:id="@+id/usernameInput"/>
+
+
+    <!-- email-->
+
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="Email"
+    android:layout_marginTop="@dimen/margin"/>
+
+    <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:hint="Add your email"
+              android:lines="1"
+              android:gravity="center"
+              android:inputType="textEmailAddress"
+              android:id="@+id/emailInput"/>
+
+            <!--Password-->
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="Password"
+              android:layout_marginTop="@dimen/margin"/>
+
+    <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:hint="Choose your password"
+              android:lines="1"
+              android:gravity="center"
+              android:inputType="textPassword"
+              android:id="@+id/passwordInput"/>
+
+
+    <!-- Submit -->
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:id="@+id/submitButton"
+            android:text="Sign Up"
+            android:layout_marginTop="@dimen/margin"/>
+
+    <!-- Go to login -->
+
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="@string/Go_to_login"
+    android:id="@+id/goToLogin"
+    android:layout_marginTop="@dimen/margin"/>
+
+
+
+
+
+</LinearLayout>

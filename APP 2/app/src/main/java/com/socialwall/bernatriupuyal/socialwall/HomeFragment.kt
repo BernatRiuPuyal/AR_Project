@@ -1,12 +1,14 @@
 package com.socialwall.bernatriupuyal.socialwall
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
@@ -40,6 +42,20 @@ class HomeFragment : Fragment() {
 
         //TODO: Put list
         sendButton.setOnClickListener {
+
+            // TODO: check if user logged in
+
+            if(FirebaseAuth.getInstance().currentUser == null){
+
+                val signUpIntent = Intent(activity,SignUpActivity::class.java)
+                startActivity(signUpIntent)
+                return@setOnClickListener
+            }
+
+
+
+
+            //get user text
             var userText = userInput.text.toString()
 
             val userMessage = MessageModel(text = userText,createdAt = Date())
