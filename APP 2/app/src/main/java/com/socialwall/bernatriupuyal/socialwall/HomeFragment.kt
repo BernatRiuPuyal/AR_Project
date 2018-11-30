@@ -37,53 +37,67 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
-
-
         //TODO: Put list
         sendButton.setOnClickListener {
 
             // TODO: check if user logged in
 
-            if(FirebaseAuth.getInstance().currentUser == null){
+            if (FirebaseAuth.getInstance().currentUser == null) {
 
-                val signUpIntent = Intent(activity,SignUpActivity::class.java)
+                val signUpIntent = Intent(activity, SignUpActivity::class.java)
                 startActivity(signUpIntent)
                 return@setOnClickListener
             }
 
+            //no mandar mensajes vacios chaval
+            if(userInput.text.toString().isEmpty()) return@setOnClickListener
 
 
-
-            //get user text
-            var userText = userInput.text.toString()
-
-            val userMessage = MessageModel(text = userText,createdAt = Date())
             val db = FirebaseFirestore.getInstance()
-            db.collection("messages").add(userMessage).addOnSuccessListener{
-            refreshdata()
 
-            }.addOnFailureListener{
+            // Get User
 
-                Log.e("HomeFragment",it.message)
+
+            var authUser = FirebaseAuth.getInstance().currentUser!!
+            db.collection(COLLECTION_USERS).document(authUser.uid).get().addOnSuccessListener { documentSnapshot ->
+                val userProfile = documentSnapshot.toObject(UserProfile::class.java)
+                userProfile.let {
+                    Log.i("homefragment", "got user profiles")
+
+
+                    //get user text
+                    var userText = userInput.text.toString()
+
+                    val userMessage = MessageModel(text = userText, createdAt = Date())
+
+                    db.collection(COLLECTION_MESSAGES).add(userMessage).addOnSuccessListener {
+                        refreshdata()
+
+                    }.addOnFailureListener {
+
+                        Log.e("HomeFragment", it.message)
+                    }
+                }
             }
-
+                .addOnFailureListener {
+                    Log.e("matat", "ha fallat algo pero ja no se")
+                }
         }
 
     }
-    private fun refreshdata(){
+
+    private fun refreshdata() {
         val db = FirebaseFirestore.getInstance()
 
 
-        db.collection("messages").get().addOnCompleteListener{task->
-            if (task.isSuccessful){
+        db.collection("messages").get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
                 //todo get messages
-                task.result?.forEach{documentSnapshot ->
+                task.result?.forEach { documentSnapshot ->
                     val messages = documentSnapshot.toObject(MessageModel::class.java)
-                    Log.i("MainActivity","Get Message with Text: " + messages.text)
+                    Log.i("MainActivity", "Get Message with Text: " + messages.text)
                 }
-            }
-            else{
+            } else {
                 //todo: oh shiattyyyy
             }
         }

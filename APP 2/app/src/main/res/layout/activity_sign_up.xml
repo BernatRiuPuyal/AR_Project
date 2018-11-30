@@ -68,6 +68,12 @@
     android:id="@+id/goToLogin"
     android:layout_marginTop="@dimen/margin"/>
 
+    <ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content"
+                 android:id="@+id/progressBar"
+                 android:indeterminate="true"
+                 android:layout_marginTop="@dimen/margin"
+                    android:visibility="gone"/>
+
 
 
 
