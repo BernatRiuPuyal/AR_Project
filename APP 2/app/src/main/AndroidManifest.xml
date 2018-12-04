@@ -3,6 +3,8 @@
           package="com.socialwall.bernatriupuyal.socialwall">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-feature android:name="android.hardware.camera"
+                  android:required="false" />
 
     <application
             android:allowBackup="true"
@@ -11,18 +13,18 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity"
-            android:parentActivityName=".MainActivity"
+        <activity android:name=".activities.SignUpActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:label="@string/TitleSignUp">
                 <meta-data android:name="android.support.PARENT_ACTIVITY"
-                           android:value=".MainActivity"/>
+                           android:value=".activities.MainActivity"/>
         </activity>
     </application>
 

@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".ProfileFragment">
+             tools:context=".fragments.ProfileFragment">
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Sign Up"
+    android:id="@+id/signUpButton"/>
+
+
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/userFields">
+
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
 
-</FrameLayout>
+
+
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:id="@+id/userImage"
+    android:src="@drawable/ic_person"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+        android:id="@+id/username"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:id="@+id/userEmail"/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,9 +1,13 @@
-package com.socialwall.bernatriupuyal.socialwall
+package com.socialwall.bernatriupuyal.socialwall.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
+import com.socialwall.bernatriupuyal.socialwall.R
+import com.socialwall.bernatriupuyal.socialwall.fragments.HomeFragment
+import com.socialwall.bernatriupuyal.socialwall.fragments.NewsFragment
+import com.socialwall.bernatriupuyal.socialwall.fragments.ProfileFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

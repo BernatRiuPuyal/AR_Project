@@ -1,4 +1,4 @@
-package com.socialwall.bernatriupuyal.socialwall
+package com.socialwall.bernatriupuyal.socialwall.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,9 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.socialwall.bernatriupuyal.socialwall.COLLECTION_USERS
+import com.socialwall.bernatriupuyal.socialwall.R
+import com.socialwall.bernatriupuyal.socialwall.model.UserProfile
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {
@@ -39,7 +42,11 @@ class SignUpActivity : AppCompatActivity() {
 
                                 //create user document
 
-                                val userProfile = UserProfile(username = username, userId = userAuth.uid, email = email);
+                                val userProfile = UserProfile(
+                                    username = username,
+                                    userId = userAuth.uid,
+                                    email = email
+                                );
 
                                 //users
 

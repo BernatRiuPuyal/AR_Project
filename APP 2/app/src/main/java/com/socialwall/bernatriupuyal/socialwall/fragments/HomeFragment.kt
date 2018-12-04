@@ -1,9 +1,10 @@
-package com.socialwall.bernatriupuyal.socialwall
+package com.socialwall.bernatriupuyal.socialwall.fragments
 
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,12 @@ import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.google.firebase.firestore.FirebaseFirestore
+import com.socialwall.bernatriupuyal.socialwall.*
+import com.socialwall.bernatriupuyal.socialwall.activities.SignUpActivity
+import com.socialwall.bernatriupuyal.socialwall.model.MessageModel
+import com.socialwall.bernatriupuyal.socialwall.model.UserProfile
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,6 +41,12 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        refreshdata()
+
+        refreshLayout.setOnRefreshListener{
+            refreshdata()
+        }
 
 
         //TODO: Put list
@@ -67,8 +79,10 @@ class HomeFragment : Fragment() {
 
                     //get user text
                     var userText = userInput.text.toString()
+                    userInput.text.clear()
 
-                    val userMessage = MessageModel(text = userText, createdAt = Date())
+                    val userMessage =
+                        MessageModel(text = userText, createdAt = Date())
 
                     db.collection(COLLECTION_MESSAGES).add(userMessage).addOnSuccessListener {
                         refreshdata()
@@ -93,9 +107,20 @@ class HomeFragment : Fragment() {
         db.collection("messages").get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 //todo get messages
+                var list = ArrayList<MessageModel>()
                 task.result?.forEach { documentSnapshot ->
                     val messages = documentSnapshot.toObject(MessageModel::class.java)
                     Log.i("MainActivity", "Get Message with Text: " + messages.text)
+                    list.add(messages)
+                }
+
+                activity?.let {
+                    recyclerView.adapter = MessageAdapter(list)
+                    recyclerView.layoutManager = LinearLayoutManager(activity)
+
+                    //end refresh
+
+                    refreshLayout.isRefreshing = false
                 }
             } else {
                 //todo: oh shiattyyyy

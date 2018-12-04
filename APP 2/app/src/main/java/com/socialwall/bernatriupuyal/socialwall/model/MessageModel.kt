@@ -1,4 +1,4 @@
-package com.socialwall.bernatriupuyal.socialwall
+package com.socialwall.bernatriupuyal.socialwall.model
 
 import java.util.*
 
