@@ -82,7 +82,10 @@ class HomeFragment : Fragment() {
                     userInput.text.clear()
 
                     val userMessage =
-                        MessageModel(text = userText, createdAt = Date())
+                        MessageModel(   text = userText,
+                                        createdAt = Date(),
+                                        username = userProfile?.username
+                                        )
 
                     db.collection(COLLECTION_MESSAGES).add(userMessage).addOnSuccessListener {
                         refreshdata()
